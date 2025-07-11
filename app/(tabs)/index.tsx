@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, StyleSheet, _View } from "react-native";
+import { Text, View, StyleSheet, SafeAreaView } from "react-native";
 import { useState, useEffect } from "react";
 
 export default function App(){
@@ -14,13 +14,16 @@ export default function App(){
   const hours = data.getHours();
   const minutes = data.getMinutes();
   const seconds = data.getSeconds();
+  const hourDeg = (hours % 12) * 30 + minutes * 0.5; // 30 degrees per hour, plus 0.5 degrees per minute  
+  const minuteDeg = minutes * 6 + seconds * 0.1;  // 60 minutes in an hour, so each minute is 6 degrees
+  const secondDeg = seconds * 6; //60 seconds in a minute, so each second is 6 degrees  
 
   const numbers = Array.from({length: 12}, (_, i) => i + 1 );
   const radius = 120;
   const center = 150;
   
   return(
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.clockface}>
         { numbers.map( (num, key )=>{
           const angle = (key - 2) * (Math.PI / 6);
@@ -38,11 +41,11 @@ export default function App(){
             </Text>
           );
         })} 
-        <View style={[styles.hand, styles.hour]} />    
-        <View style={[styles.hand, styles.minute]}/>  
-        <View style={[styles.hand, styles.second]}/>   
+        <View style={[styles.hand, styles.hour, { transform: [{ rotate: `${hourDeg}deg`}]}]}  />    
+        <View style={[styles.hand, styles.minute , { transform: [{rotate: `${minuteDeg}deg`}]}]}/>  
+        <View style={[styles.hand, styles.second, { transform: [{ rotate: `${secondDeg}deg`}]}]}/>   
       </View>
-    </View>
+    </SafeAreaView>
   )
 }
 
@@ -66,7 +69,9 @@ const styles = StyleSheet.create({
   hand: {
     position: 'absolute',
     backgroundColor: '#000',
-    transformOrigin: '50% 100%',
+    bottom: 150,
+    left: 147.5, // Center the hand
+    transformOrigin: 'bottom center', 
   },
   hour:{
     width: 5,
