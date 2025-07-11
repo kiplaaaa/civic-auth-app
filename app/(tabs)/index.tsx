@@ -14,6 +14,7 @@ export default function App(){
   const hours = data.getHours();
   const minutes = data.getMinutes();
   const seconds = data.getSeconds();
+  
   const hourDeg = (hours % 12) * 30 + minutes * 0.5; // 30 degrees per hour, plus 0.5 degrees per minute  
   const minuteDeg = minutes * 6 + seconds * 0.1;  // 60 minutes in an hour, so each minute is 6 degrees
   const secondDeg = seconds * 6; //60 seconds in a minute, so each second is 6 degrees  
