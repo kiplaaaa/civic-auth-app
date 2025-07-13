@@ -38,3 +38,18 @@ export default function TabLayout() {
     </Tabs>
   );
 }
+
+// import React from "react";
+// import { GestureHandlerRootView } from "react-native-gesture-handler";
+// import { Drawer } from "expo-router/drawer";
+
+// export default function TabLayout() {
+//   return (
+//     <GestureHandlerRootView style={{ flex: 1, backgroundColor: 'white' }}>
+//       <Drawer>
+//         <Drawer.Screen name="index" />
+//         <Drawer.Screen name="explore" />
+//       </Drawer>
+//     </GestureHandlerRootView>
+//   );
+// }
