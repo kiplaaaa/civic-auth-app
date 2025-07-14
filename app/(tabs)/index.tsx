@@ -2,6 +2,7 @@ import React from "react";
 import { Text, View, StyleSheet, SafeAreaView } from "react-native";
 import { useState, useEffect } from "react";
 import { StatusBar } from "react-native";
+import { Link } from 'expo-router';
 
 export default function App(){
   const [ data, setData ] = useState(new Date());
@@ -48,6 +49,9 @@ export default function App(){
         <View style={[styles.hand, styles.minute , { transform: [{rotate: `${minuteDeg}deg`}]}]}/>  
         <View style={[styles.hand, styles.second, { transform: [{ rotate: `${secondDeg}deg`}]}]}/>   
       </View>
+      <Link href="/home/feed" style={{ marginTop: 20, color: 'blue' }}>
+        Go to Feed  
+      </Link>
     </SafeAreaView>
   )
 }
