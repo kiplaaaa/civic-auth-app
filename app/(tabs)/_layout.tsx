@@ -8,7 +8,7 @@ import TabBarBackground from '@/components/ui/TabBarBackground';
 export default function TabLayout() {
 
   return (
-    <Tabs
+    <Tabs // protected routes in tabs/stack/drawer
       screenOptions={{
         headerShown: false,
         tabBarButton: HapticTab,
