@@ -52,6 +52,8 @@ export default function App(){
       <Link href="/home/feed" style={{ marginTop: 20, color: 'blue' }}>
         Go to Feed  
       </Link>
+
+      <Link href='/modal'>Open Modal</Link>
     </SafeAreaView>
   )
 }

@@ -20,6 +20,8 @@ export default function TabLayout() {
     
         }}
       />
+
+      <Stack.Screen name='modal' options={{ presentation:'modal', animation: 'fade_from_bottom'}}/>
       <Stack.Screen
         name="explore"
         options={{
