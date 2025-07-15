@@ -12,3 +12,4 @@ export default function Modal() {
         </View>
     )
 }
+//implementing shared route for modal
