@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, StyleSheet, SafeAreaView } from "react-native";
+import { Text, View, StyleSheet, SafeAreaView, Alert , Button} from "react-native";
 import { useState, useEffect } from "react";
 import { StatusBar } from "react-native";
 import { Link } from 'expo-router';
@@ -24,6 +24,12 @@ export default function App(){
   const numbers = Array.from({length: 12}, (_, i) => i + 1 );
   const radius = 120;
   const center = 150;
+
+  //alert modal
+
+  const handleAler = () =>{
+    Alert.alert('Hello');
+  }
   
   return(
     <SafeAreaView style={styles.container}>
@@ -54,6 +60,7 @@ export default function App(){
       </Link>
 
       <Link href='/modal'>Open Modal</Link>
+      <Button title="Confirm" onPress={handleAler}/>
     </SafeAreaView>
   )
 }

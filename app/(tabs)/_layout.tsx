@@ -1,17 +1,16 @@
 import { Stack } from 'expo-router';
 import React from 'react';
-import { Platform } from 'react-native';
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
+import { Settings } from 'react-native';
 
+// export const unstableSettings{
+//   initialRouteName: ''
+// }
 export default function TabLayout() {
 
   return (
     <Stack // protected routes in Stack/stack/drawer
       screenOptions={{
         headerShown: false,
-
       }}>
       <Stack.Screen
         name="index"
@@ -21,7 +20,7 @@ export default function TabLayout() {
         }}
       />
 
-      <Stack.Screen name='modal' options={{ presentation:'modal', animation: 'fade_from_bottom'}}/>
+      <Stack.Screen name='modal' options={{ presentation:'modal', animation: 'fade'}}/>
       <Stack.Screen
         name="explore"
         options={{
