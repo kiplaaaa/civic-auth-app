@@ -28,7 +28,10 @@ export default function App(){
   //alert modal
 
   const handleAler = () =>{
-    Alert.alert('Hello');
+    Alert.alert('Hello', 'You there!', [
+      { text: 'Cancel', style: 'cancel', onPress: () => console.log('Cancel Pressed')},
+      { text: 'OK', style: 'destructive', onPress: () => console.log('OK Pressed')
+    }]);
   }
   
   return(
