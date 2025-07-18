@@ -27,7 +27,7 @@ export default function App(){
 
   //alert modal
 
-  const handleAler = () =>{
+  const handleAlert = () =>{
     Alert.alert('Hello', 'You there!', [
       { text: 'Cancel', style: 'cancel', onPress: () => console.log('Cancel Pressed')},
       { text: 'OK', style: 'destructive', onPress: () => console.log('OK Pressed')
@@ -63,7 +63,7 @@ export default function App(){
       </Link>
 
       <Link href='/modal'>Open Modal</Link>
-      <Button title="Confirm" onPress={handleAler}/>
+      <Button title="Confirm" onPress={handleAlert}/>
     </SafeAreaView>
   )
 }
