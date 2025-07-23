@@ -16,10 +16,10 @@ export default function Modal() {
 
             <View>
                 <Text style = {{ flex: 1, alignItems: 'center', justifyContent: 'center', color: 'black'}}>
-                    <Switch value = {isDarkMode} onValueChange={()=>(setIsDarkMode((prev)=>!prev))}/>
+                   Dark Mode
                 </Text>
+                <Switch value={isDarkMode} onValueChange={()=>(setIsDarkMode((prev)=>!prev))} trackColor={ {false: '#f3f4f3', true: '#666666'}}/>
             </View>
         </>
     )
 }
-//implementing shared route for modal

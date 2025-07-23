@@ -8,25 +8,30 @@ import { Settings } from 'react-native';
 export default function TabLayout() {
 
   return (
-    <Stack // protected routes in Stack/stack/drawer
+    <Stack 
       screenOptions={{
         headerShown: false,
-      }}>
-      <Stack.Screen
+      }}
+    >
+      <Stack.Protected guard={true}>
+       <Stack.Screen
         name="index"
         options={{
           title: 'Home',
+        }}
+      /> 
+      </Stack.Protected>
+      <Stack.Protected guard = {false}>
+        <Stack.Screen
+          name="explore"
+          options={{
+            title: 'Explore',
+        }}
+      />
+      </Stack.Protected>
     
-        }}
-      />
-
       <Stack.Screen name='modal' options={{ presentation:'modal', animation: 'fade'}}/>
-      <Stack.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-        }}
-      />
+      
     </Stack>
   );
 }
