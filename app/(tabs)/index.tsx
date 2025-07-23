@@ -58,7 +58,7 @@ export default function App(){
         <View style={[styles.hand, styles.minute , { transform: [{rotate: `${minuteDeg}deg`}]}]}/>  
         <View style={[styles.hand, styles.second, { transform: [{ rotate: `${secondDeg}deg`}]}]}/>   
       </View>
-      <Link href="/home/feed" style={{ marginTop: 20, color: 'blue' }}>
+      <Link href='/(tabs)/(home)/feed' style={{ marginTop: 20, color: 'blue' }}>
         Go to Feed  
       </Link>
 

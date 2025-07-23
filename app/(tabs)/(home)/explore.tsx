@@ -2,6 +2,6 @@ import { Link } from 'expo-router';
 
 export default function Explore() {
     return (
-        <Link href='/home/feed'>Feed</Link>
+        <Link href='/(tabs)/(home)/feed'>Feed</Link>
     )
 }
