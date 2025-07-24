@@ -30,7 +30,7 @@ export default function TabLayout() {
       />
       </Stack.Protected>
     
-      <Stack.Screen name='modal' options={{ presentation:'modal', animation: 'fade'}}/>
+      <Stack.Screen name='modal' options={{ presentation:'transparentModal', animation: 'fade'}}/>
       
     </Stack>
   );
