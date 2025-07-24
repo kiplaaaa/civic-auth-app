@@ -1,3 +1,4 @@
-import { Tabs } from 'expo-router';
-
-export default <Tabs/>
+import { Drawer } from 'expo-router/drawer'
+export default function HomeLayout(){
+    return <Drawer/>
+}

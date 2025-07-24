@@ -1,4 +1,5 @@
 import { View, Text } from 'react-native';
+import { Link } from 'expo-router';
 
 export default function Feed() {
     return (
@@ -6,6 +7,7 @@ export default function Feed() {
             <Text>
                 Feed
             </Text>
+            <Link href='/(tabs)' className='bg-color: blue'>Back</Link>
         </View>
     )
 }
