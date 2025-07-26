@@ -36,7 +36,11 @@
           "backgroundColor": "#ffffff"
         }
       ],
-      "expo-secure-store"
+      "expo-secure-store",
+      {
+        "configureAndroidBackup": true,
+        "faceIDPermission": "Allow ${PRODUCT_NAME} to access yoy face ID biometric data"
+      }
     ],
     "experiments": {
       "typedRoutes": true
