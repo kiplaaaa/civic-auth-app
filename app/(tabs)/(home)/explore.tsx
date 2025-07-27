@@ -17,6 +17,20 @@ export default function Explore() {
             <Text>{index}.{name}</Text>
         </View>
     )
+    const listHeaderComponent =()=>{
+        return(
+              <Text>Fruits</Text>
+        )
+    }
+
+    const itemSeparator = () =>(
+    <View style={{height: 10}}/>
+    )
+
+    const listfooterComponent =()=>(
+        <Text>Fruits</Text>
+    )
+
     return (
         <View style={styles.container}>
             <Link href='/(tabs)/(home)/feed'>Feed</Link>
@@ -24,6 +38,9 @@ export default function Explore() {
                 data={Data} 
                 renderItem={({item})=><MyList index= {item.id} name={item.title}/>} 
                 keyExtractor={name => name.id.toString()}
+                ListHeaderComponent={listHeaderComponent}
+                ListFooterComponent={listfooterComponent}
+                ItemSeparatorComponent={itemSeparator}
             />
         </View>
     )

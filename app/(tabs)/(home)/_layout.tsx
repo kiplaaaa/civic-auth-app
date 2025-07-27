@@ -1,4 +1,9 @@
 import { Drawer } from 'expo-router/drawer'
+import { UserProvider } from '@/context/context'
 export default function HomeLayout(){
-    return <Drawer/>
+    return (
+        <UserProvider>
+            <Drawer/>
+        </UserProvider>        
+    )
 }
