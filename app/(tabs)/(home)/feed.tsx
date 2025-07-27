@@ -4,7 +4,7 @@ import { UserContext } from '@/context/context';
 import { useContext } from 'react';
 
 export default function Feed() {
-    const { user, setUser} = useContext(UserContext);
+    const { user, setUser, logOut} = useContext(UserContext);
 
     const handleLogin = () =>{
         setUser({ name: 'giddy'})
@@ -27,7 +27,7 @@ export default function Feed() {
                 // if the user has a string
                     (<>
                         <Text>Welcome {user.name}</Text>
-                        <Button title='Logout' onPress={handleLogOut}/>
+                        <Button title='Logout' onPress={logOut}/>
                     </>) :
                     // if the user is null
                     (<>
