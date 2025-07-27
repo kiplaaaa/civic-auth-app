@@ -33,12 +33,6 @@ export const UserProvider = ({ children }: PropsWithChildren) =>{
         AsyncStorage.removeItem('user');
     };
     const loading = user === null;
-    // This could be used to check if the user is logged in or not
-
-    // and to load the user data from AsyncStorage when the app starts.
-    // AsyncStorage.getItem('user').then((storedUser) => {      
-    //     if (storedUser) {
-    //         setUserState(JSON.parse(storedUser));
     return(
         <UserContext.Provider value={{ user, setUser, logOut, loading } }>
             {children}
