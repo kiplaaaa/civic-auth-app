@@ -1,6 +1,5 @@
 import { Stack } from 'expo-router';
 import React from 'react';
-import { Settings } from 'react-native';
 
 // export const unstableSettings{
 //   initialRouteName: ''
@@ -13,7 +12,7 @@ export default function TabLayout() {
         headerShown: false,
       }}
     >
-      <Stack.Protected guard={true}>
+      <Stack.Protected guard={false}>
        <Stack.Screen
         name="index"
         options={{
@@ -21,16 +20,15 @@ export default function TabLayout() {
         }}
       /> 
       </Stack.Protected>
-      <Stack.Protected guard = {false}>
+      <Stack.Protected guard = {true}>
         <Stack.Screen
-          name="explore"
+          name="modal"
           options={{
             title: 'Explore',
+            presentation: 'transparentModal',
         }}
       />
       </Stack.Protected>
-    
-      <Stack.Screen name='modal' options={{ presentation: 'transparentModal', animation: 'fade'}}/>
       
     </Stack>
   );

@@ -1,4 +1,4 @@
-import { Text, View, Switch} from "react-native";
+import { Text, View, Switch, Button} from "react-native";
 import { useState } from "react";
 import { router, Link } from "expo-router";
 export default function Modal() {
@@ -15,11 +15,12 @@ export default function Modal() {
             </View>
 
             <View>
-                <Text style = {{ flex: 1, alignItems: 'center', justifyContent: 'center', color: 'black'}}>
+                <Text style = {{ flex: 1, alignItems: 'center', justifyContent: 'center', color: 'aliceblue'}}>
                    Dark Mode
                 </Text>
                 <Switch value={isDarkMode} onValueChange={()=>(setIsDarkMode((prev)=>!prev))} trackColor={ {false: '#f3f4f3', true: '#666666'}}/>
             </View>
+            <Link href="/feed">Feed</Link>
         </>
     )
 }

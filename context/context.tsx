@@ -1,6 +1,9 @@
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, useEffect } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createContext, useState } from "react";
+import *as SplashScreen from 'expo-splash-screen';
+
+SplashScreen.preventAutoHideAsync();
 
 type User = {
     name: string
@@ -23,16 +26,43 @@ export const UserContext = createContext<userState>({
 
 export const UserProvider = ({ children }: PropsWithChildren) =>{
     const [ user, setUserState ] = useState<User | null>(null);
-    const setUser = (user: User) => {
-        setUserState(user);
-        AsyncStorage.setItem('user', JSON.stringify(user));
+    const [ loading, setLoading ] = useState(true);
+
+
+    // load user from asyncStorage on startup
+    useEffect(()=>{
+        const loadUser = async()=>{
+            try{
+                const storedUser = await AsyncStorage.getItem('user');
+                if(storedUser){
+                    setUserState(JSON.parse(storedUser))
+                }
+            }
+            catch(e){
+                console.error('error', e)
+            }
+            finally{
+                setLoading(false);
+            }
+        }
+        loadUser()
+    }, [])
+
+    useEffect(()=>{
+        if(!loading){
+            SplashScreen.hideAsync();
+        }
+    }, [loading]);
+
+    const setUser = (Newuser: User) => {
+        AsyncStorage.setItem('user', JSON.stringify(Newuser));
+        setUserState(Newuser)
     };
 
     const logOut = () => {
         setUserState(null);
         AsyncStorage.removeItem('user');
     };
-    const loading = user === null;
     return(
         <UserContext.Provider value={{ user, setUser, logOut, loading } }>
             {children}
