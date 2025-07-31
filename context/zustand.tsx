@@ -36,15 +36,9 @@ export const userStoreData = create
         name: 'storage Key',
         storage: {()=> {
             return {
-                getItem: async (key) => {
-                    const value = await getItem(key);
-                    return value ? JSON.parse(value) : null;
-                },
-                setItem: async (key, value) => {
-                    await setItem(key, JSON.stringify(value));
-                },
-                removeItem: async (key) => {
-                    await deleteItemAsync(key);
+                getItem,
+                setItem,
+                removeItem: deleteItemAsync,
                 }
             };
         }}
