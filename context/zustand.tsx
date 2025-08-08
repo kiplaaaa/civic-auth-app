@@ -1,7 +1,7 @@
 import { getItem, setItem, deleteItemAsync } from 'expo-secure-store';
 import React from "react";
 import { create } from 'zustand';
-import { createJSONStorage, persist } from "zustand/middleware";
+import { persist, createJSONStorage } from "zustand/middleware";
 
 type User = {
     user: string;
@@ -14,35 +14,27 @@ type UserState = {
     logOut: ()=>void;
 };
 
-export const userStoredData = create(
-    persist<UserState>(
-        (set)=>{
-            user: User,
+export const userStoredData = create<UserState>()(
+    persist(
+        (set)=>({
+            user: null,
             loading: false,
-            login: ()=>{
-                set((state)=>{
-                    return{
-                        ...state,
-                        loading: true,
-                    }
-                });
-            },
-            logOut: ()=>{
-                set((state)=>{
-                    return{
-                        ...state,
-                        loading: false,
-                    }
-                })
-            },
-       }
-    ),
-    {
-        name: 'Authorize',
-        storage: createJSONStorage(=>({
-            getItem,
-            setItem, 
-            deleteItemAsync,
-        }))
-    }      
+            login: () => set({
+                user: { user: 'giddy' },
+                loading: true
+            }),
+            logOut: ()=>set({
+                user: null,
+                loading: false
+            }),
+        }),
+        {   
+            name: 'user-storage',
+            storage: createJSONStorage(() => ({
+                getItem,
+                setItem,
+                removeItem: deleteItemAsync,
+            })),
+        }
+    )
 )
