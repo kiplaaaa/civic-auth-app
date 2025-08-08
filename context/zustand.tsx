@@ -37,4 +37,4 @@ export const userStoredData = create<UserState>()(
             })),
         }
     )
-)
+);
