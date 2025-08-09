@@ -1,11 +1,10 @@
 import { View, Text, Button } from 'react-native';
 import { Link } from 'expo-router';
-//import { UserContext } from '@/context/context';
+import { UserContext } from '@/context/context';
 import { useContext } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
-import { userStoredData } from '@/context/zustand';
 export default function Feed() {
-    //const { user, setUser, logOut, loading} = useContext(UserContext);
+    const { user, setUser, logOut, loading} = useContext(UserContext);
 
     // const handleLogin = () =>{
     //     setUser({ name: 'giddy'})
@@ -15,7 +14,7 @@ export default function Feed() {
     // const handleLogOut = () =>{
     //     setUser(null)
     // }
-    const { user, loading, login, logOut } = userStoredData();
+    
     if ( loading ) return <Text>Loading</Text>
 
     return (
@@ -23,19 +22,19 @@ export default function Feed() {
             <Text>
                 Feed
             </Text>
-            <Link href='/(tabs)' style={{ backgroundColor: 'blue'}}>Back</Link>
+            <Link href='/(tabs)' className='bg-color: blue'>Back</Link>
             <>
                 {
                 user ? 
                 // if the user has a string
                     (<>
-                        <Text>Welcome {user.user}</Text>
+                        <Text>Welcome {user.name}</Text>
                         <Button title='Logout' onPress={logOut}/>
                     </>) :
                     // if the user is null
                     (<>
                         <Text>You are logged Out</Text>
-                        <Button title='Login' onPress={login}/>
+                        <Button title='Login' onPress={()=>setUser({name: 'hi'})}/>
                     </>)
                 }
             </>

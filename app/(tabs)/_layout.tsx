@@ -20,7 +20,7 @@ export default function TabLayout() {
         }}
       /> 
       </Stack.Protected>
-      {/* <Stack.Protected guard = {true}>
+      <Stack.Protected guard = {true}>
         <Stack.Screen
           name="modal"
           options={{
@@ -28,7 +28,12 @@ export default function TabLayout() {
             presentation: 'transparentModal',
         }}
         />
-      </Stack.Protected>       */}
+      </Stack.Protected>  
+      {/* <Stack.Protected guard={false}>
+        <Stack.Screen
+        name='(home)' 
+        />
+      </Stack.Protected>    */}
     </Stack>
   );
 }

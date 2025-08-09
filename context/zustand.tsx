@@ -1,4 +1,4 @@
-import { getItem, setItem, deleteItemAsync } from 'expo-secure-store';
+import { getItemAsync, setItemAsync, deleteItemAsync } from 'expo-secure-store';
 import React from "react";
 import { create } from 'zustand';
 import { persist, createJSONStorage } from "zustand/middleware";
@@ -21,19 +21,19 @@ export const userStoredData = create<UserState>()(
             loading: false,
             login: () => set({
                 user: { user: 'giddy' },
-                loading: true
+                loading: false,
             }),
             logOut: ()=>set({
                 user: null,
-                loading: false
+                loading: false,
             }),
         }),
         {   
             name: 'user-storage',
             storage: createJSONStorage(() => ({
-                getItem,
-                setItem,
-                removeItem: deleteItemAsync,
+                getItem:(key)=> getItemAsync(key),
+                setItem:(key, value)=> setItemAsync(key, value),
+                removeItem:(key)=> deleteItemAsync(key),
             })),
         }
     )
