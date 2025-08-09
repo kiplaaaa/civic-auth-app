@@ -2,9 +2,10 @@ import { View, Text, Button } from 'react-native';
 import { Link } from 'expo-router';
 import { UserContext } from '@/context/context';
 import { useContext } from 'react';
-import * as SplashScreen from 'expo-splash-screen';
+import { useNavigation } from 'expo-router';
 export default function Feed() {
     const { user, setUser, logOut, loading} = useContext(UserContext);
+    const navigation = useNavigation();
 
     // const handleLogin = () =>{
     //     setUser({ name: 'giddy'})
@@ -38,6 +39,7 @@ export default function Feed() {
                     </>)
                 }
             </>
+            <Button title = 'Open Drawer' onPress={()=> navigation.openDrawer()} />
         </View>
     )
 }
