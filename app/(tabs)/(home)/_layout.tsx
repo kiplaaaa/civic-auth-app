@@ -1,6 +1,7 @@
 import { Drawer } from 'expo-router/drawer'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { UserProvider } from '@/context/context'
+import { Ionicons } from '@expo/vector-icons'
 export default function HomeLayout(){
     return (
         <GestureHandlerRootView>
@@ -20,6 +21,9 @@ export default function HomeLayout(){
                  }>
                     <Drawer.Screen name='explore' options={{
                         title: 'Home',
+                        drawerIcon: ({color, size})=> (
+                            <Ionicons name='home-outline' color={color} size={size} />
+                        )
                     }} />
                     <Drawer.Screen name='feed' />
                 </Drawer>
