@@ -12,7 +12,7 @@ export default function TabLayout() {
         headerShown: false,
       }}
     >
-      <Stack.Protected guard={false}>
+      <Stack.Protected guard={true}>
        <Stack.Screen
         name="index"
         options={{
@@ -20,16 +20,15 @@ export default function TabLayout() {
         }}
       /> 
       </Stack.Protected>
-      <Stack.Protected guard = {true}>
+      {/* <Stack.Protected guard = {true}>
         <Stack.Screen
           name="modal"
           options={{
             title: 'Explore',
             presentation: 'transparentModal',
         }}
-      />
-      </Stack.Protected>
-      
+        />
+      </Stack.Protected>       */}
     </Stack>
   );
 }
