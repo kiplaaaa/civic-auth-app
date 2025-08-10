@@ -50,7 +50,6 @@ export default function BingoBoard() {
 const styles =StyleSheet.create({
     Board: {
         flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#f0f0f0',
     },
