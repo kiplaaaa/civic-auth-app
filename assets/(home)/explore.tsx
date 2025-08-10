@@ -33,7 +33,7 @@ export default function Explore() {
 
     return (
         <View style={styles.container}>
-            <Link href='/(tabs)/(home)/feed'>Feed</Link>
+            <Link href='/'>Feed</Link>
             <FlatList 
                 data={Data} 
                 renderItem={({item})=><MyList index= {item.id} name={item.title}/>} 

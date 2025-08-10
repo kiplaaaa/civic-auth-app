@@ -1,54 +1,30 @@
-import { Stack } from 'expo-router';
+import { Tabs } from 'expo-router';
 import React from 'react';
 
-// export const unstableSettings{
-//   initialRouteName: ''
-// }
 export default function TabLayout() {
 
   return (
-    <Stack 
+    <Tabs 
       screenOptions={{
         headerShown: false,
       }}
     >
-      <Stack.Protected guard={true}>
-       <Stack.Screen
+      <Tabs.Protected guard={true}>
+       <Tabs.Screen
         name="index"
         options={{
           title: 'Home',
         }}
       /> 
-      </Stack.Protected>
-      <Stack.Protected guard = {true}>
-        <Stack.Screen
+      </Tabs.Protected>
+      <Tabs.Protected guard = {true}>
+        <Tabs.Screen
           name="modal"
           options={{
             title: 'Explore',
-            presentation: 'transparentModal',
         }}
         />
-      </Stack.Protected>  
-      {/* <Stack.Protected guard={false}>
-        <Stack.Screen
-        name='(home)' 
-        />
-      </Stack.Protected>    */}
-    </Stack>
+      </Tabs.Protected>  
+    </Tabs>
   );
 }
-
-// import React from "react";
-// import { GestureHandlerRootView } from "react-native-gesture-handler";
-// import { Drawer } from "expo-router/drawer";
-
-// export default function TabLayout() {
-//   return (
-//     <GestureHandlerRootView style={{ flex: 1, backgroundColor: 'white' }}>
-//       <Drawer>
-//         <Drawer.Screen name="index" />
-//         <Drawer.Screen name="explore" />
-//       </Drawer>
-//     </GestureHandlerRootView>
-//   );
-// }

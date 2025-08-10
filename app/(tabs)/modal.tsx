@@ -20,7 +20,7 @@ export default function Modal() {
                 </Text>
                 <Switch value={isDarkMode} onValueChange={()=>(setIsDarkMode((prev)=>!prev))} trackColor={ {false: '#f3f4f3', true: '#666666'}}/>
             </View>
-            <Link href="/feed">Feed</Link>
+            <Link href="/">Feed</Link>
         </>
     )
 }
