@@ -2,6 +2,7 @@ import React from "react";
 import { Text, View, StyleSheet, SafeAreaView, Alert, Button, TouchableOpacity, TextInput } from "react-native";
 import { useState } from "react";
 import { Modal } from "react-native";
+import SquaresBingoBoard from "./squaresBingoBoard";
 
 export default function BingoBoard() {
     const [title, setTitle] = useState("Add New Goals");
@@ -43,6 +44,7 @@ export default function BingoBoard() {
                    </View>
                 </View>
             </Modal>
+            <SquaresBingoBoard />
         </SafeAreaView>
     )
 }

@@ -36,6 +36,14 @@ export default function TabLayout() {
           <Ionicons name='grid-outline' color={color} size={size} />
         )        
        }}/> 
+
+      <Tabs.Screen
+       name='squaresBingoBoard'
+       options={{
+        href: null
+       }}
+       
+       />
     </Tabs>
   );
 }
