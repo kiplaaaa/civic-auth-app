@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
         width: 80,
         backgroundColor: '#f0f0f0',
         borderWidth: 1,
-        borderColor: '#ccc',        
+        borderColor: '#ccc',    
+        justifyContent: 'space-around',    
     },
     text:{
         fontSize: 16,
