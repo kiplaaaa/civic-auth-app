@@ -4,6 +4,7 @@ import { Text, TouchableOpacity, StyleSheet} from "react-native";
 type SquareGoalsProps = {
     goal: string;
     onPress: () => void;
+    style?: object;
 }
 
 export default function SquareGoals({goal, onPress}: SquareGoalsProps) {
