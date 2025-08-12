@@ -1,6 +1,7 @@
 import React from "react";
 import SquareGoals from "@/components/squareBingoBoard";
-import { Modal, View, StyleSheet, SafeAreaView, Button, TextInput, Text } from "react-native";
+import { Modal, View, StyleSheet, SafeAreaView, Button, TextInput, Text, TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function SquaresBingoBoard() {
   const [titles, setTitles] = React.useState(
@@ -9,6 +10,7 @@ export default function SquaresBingoBoard() {
   const [modalVisible, setModalVisible] = React.useState(false);
   const [selectedIndex, setSelectedIndex] = React.useState<number | null>(null);
   const [newTitle, setNewTitle] = React.useState("");
+  const [ completed, setCompleted ] = React.useState(Array(25).fill(false));
 
   const handleTitleChange = (index: number) => {
     setSelectedIndex(index);
@@ -23,6 +25,12 @@ export default function SquaresBingoBoard() {
     );
     setModalVisible(false);
   };
+
+  const handleCompleted = ( i: number) =>{
+    setCompleted(
+        (prev)=> prev.map((done, index)=>( index === index ? !done : done))
+    )
+  }
 
   return (
     <SafeAreaView style={styles.safeArea}>
