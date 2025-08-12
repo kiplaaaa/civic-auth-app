@@ -37,7 +37,7 @@ export default function SquaresBingoBoard() {
       <View style={styles.container}>
         {titles.map((goal, index) => (
           <SquareGoals key={index} goal={goal} onPress={() => handleTitleChange(index)} />
-        ))}
+        ))}       
       </View>
 
       {/* Modal */}
@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     justifyContent: "center",
     paddingVertical: 20,
+    position: "relative",
   },
   modalOverlay: {
     flex: 1,

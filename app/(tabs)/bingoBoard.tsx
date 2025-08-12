@@ -12,7 +12,7 @@ import {
 import SquaresBingoBoard from "./squaresBingoBoard";
 
 export default function App() {
-  const [title, setTitle] = useState("Add New Goals");
+  const [title, setTitle] = useState("Add New Goal");
   const [modalVisible, setModalVisible] = useState(false);
   const [tempTitle, setTempTitle] = useState("");
 
@@ -22,7 +22,7 @@ export default function App() {
   };
 
   const handleConfirm = () => {
-    setTitle(tempTitle || "Add New Goals");
+    setTitle(tempTitle || "Add New Goal");
     setModalVisible(false);
   };
 
@@ -50,7 +50,7 @@ export default function App() {
             />
             <View style={styles.buttonRow}>
               <View style={styles.button}>
-                <Button title="Cancel" onPress={() => setModalVisible(false)} />
+                <Button title="Cancel" onPress={() => setModalVisible(false)} color='#888'/>
               </View>
               <View style={styles.button}>
                 <Button title="Confirm" onPress={handleConfirm} color="#4A90E2" />
