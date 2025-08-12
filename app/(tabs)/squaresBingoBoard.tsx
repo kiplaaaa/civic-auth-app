@@ -1,87 +1,122 @@
-import SquareGoals from "@/components/squareBingoBoard";
 import React from "react";
-import { Modal, View, StyleSheet, SafeAreaView, Button, TextInput } from "react-native";
+import SquareGoals from "@/components/squareBingoBoard";
+import { Modal, View, StyleSheet, SafeAreaView, Button, TextInput, Text } from "react-native";
+
 export default function SquaresBingoBoard() {
-    const [ title, setTitle ] = React.useState(
-        Array.from({length: 25}, (_, index)=> `Add Goal ${index + 1}`)
+  const [titles, setTitles] = React.useState(
+    Array.from({ length: 25 }, (_, index) => "Add Goal")
+  );
+  const [modalVisible, setModalVisible] = React.useState(false);
+  const [selectedIndex, setSelectedIndex] = React.useState<number | null>(null);
+  const [newTitle, setNewTitle] = React.useState("");
+
+  const handleTitleChange = (index: number) => {
+    setSelectedIndex(index);
+    setNewTitle(titles[index]);
+    setModalVisible(true);
+  };
+
+  const handleConfirm = () => {
+    if (selectedIndex === null) return;
+    setTitles((prev) =>
+      prev.map((goal, i) => (i === selectedIndex ? newTitle.trim() || goal : goal))
     );
-    const [ modalVisible, setModalVisible ] = React.useState(false);
-    const [ selectedIndex, setSelectedIndex ] = React.useState(null);
-    const [ newTitle, setNewTitle ] = React.useState("");
+    setModalVisible(false);
+  };
 
-    const handleTitleChange = (index: any) => {
-        setSelectedIndex(index);
-        setNewTitle(title[index]);        
-        setModalVisible(true);
-    }
-    const handleConfirm = () => {  
-        setTitle((prevTitles) => prevTitles.map((goal, i) =>
-            (i === selectedIndex ? newTitle : goal ))
-        );
-        setModalVisible(false);        
-    }
+  return (
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        {titles.map((goal, index) => (
+          <SquareGoals key={index} goal={goal} onPress={() => handleTitleChange(index)} />
+        ))}
+      </View>
 
-    return(
-        <SafeAreaView>
-            <View style={styles.container}>
-                {
-                    title.map((goal, index)=> (
-                        <SquareGoals
-                            key={index}
-                            goal={goal}
-                            onPress={()=> handleTitleChange(index)}                        
-                        />)
-                    )
-                }
-                <Modal
-                    animationType="fade"
-                    transparent
-                    visible={modalVisible}
-                    onRequestClose={() => setModalVisible(false)}
-                    >
-                        <View style={styles.Modal}>
-                            <View style={ styles.ModalContent}>
-                                <TextInput
-                                    style={{ height: 40, borderColor: 'gray', borderWidth: 1, margin: 20, paddingHorizontal: 10, backgroundColor: 'gray' }}
-                                    placeholder="Enter new title"
-                                    value={newTitle}
-                                    onChangeText={setNewTitle}  
-                                />
-                                <View style = { styles.Buttons}>
-                                    <Button title="Cancel" onPress={() => setModalVisible(false)} />
-                                    <Button title="Add" onPress={handleConfirm} />
-                                </View>
-                            </View>
-                        </View>
-                    </Modal>
+      {/* Modal */}
+      <Modal
+        animationType="slide"
+        transparent
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalTitle}>Edit Goal</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Enter new goal"
+              value={newTitle}
+              onChangeText={setNewTitle}
+              placeholderTextColor="#999"
+            />
+            <View style={styles.buttonRow}>
+              <View style={styles.buttonWrapper}>
+                <Button title="Cancel" onPress={() => setModalVisible(false)} color="#888" />
+              </View>
+              <View style={styles.buttonWrapper}>
+                <Button title="Save" onPress={handleConfirm} color="#2196F3" />
+              </View>
             </View>
-        </SafeAreaView>
-    )
+          </View>
+        </View>
+      </Modal>
+    </SafeAreaView>
+  );
 }
+
 const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-    },
-    Modal: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    },
-    ModalContent: {
-        width: '80%',
-        backgroundColor: 'white',
-        borderRadius: 10,
-        padding: 20,
-        alignItems: 'center',
-    },
-    Buttons: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        width: '100%',
-        marginTop: 20,
-    },
-})
+  safeArea: {
+    flex: 1,
+    backgroundColor: "#f7f7f7",
+  },
+  container: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    paddingVertical: 20,
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: "rgba(0,0,0,0.5)",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 16,
+  },
+  modalContent: {
+    width: "90%",
+    backgroundColor: "#fff",
+    borderRadius: 16,
+    padding: 20,
+    shadowColor: "#000",
+    shadowOpacity: 0.15,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 4,
+  },
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: "700",
+    marginBottom: 12,
+    textAlign: "center",
+    color: "#333",
+  },
+  input: {
+    height: 45,
+    borderColor: "#ccc",
+    borderWidth: 1,
+    borderRadius: 10,
+    paddingHorizontal: 12,
+    marginBottom: 20,
+    fontSize: 16,
+    backgroundColor: "#f9f9f9",
+    color: "#333",
+  },
+  buttonRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  buttonWrapper: {
+    flex: 1,
+    marginHorizontal: 5,
+  },
+});

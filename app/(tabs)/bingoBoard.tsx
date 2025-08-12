@@ -1,77 +1,134 @@
-import React from "react";
-import { Text, View, StyleSheet, SafeAreaView, Alert, Button, TouchableOpacity, TextInput } from "react-native";
-import { useState } from "react";
-import { Modal } from "react-native";
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Modal,
+  TextInput,
+  Button,
+  Platform,
+} from "react-native";
 import SquaresBingoBoard from "./squaresBingoBoard";
 
-export default function BingoBoard() {
-    const [title, setTitle] = useState("Add New Goals");
-    const [modalVisible, setModalVisible] = useState(false);
-    const [newTitle, setNewTitle] = useState("");
+export default function App() {
+  const [title, setTitle] = useState("Add New Goals");
+  const [modalVisible, setModalVisible] = useState(false);
+  const [tempTitle, setTempTitle] = useState("");
 
-    const handleTitleChange = () => {
-        setNewTitle(title);        
-        setModalVisible(true);
-    }
-    const handleConfirm = () => {  
-        setTitle(newTitle);
-        setModalVisible(false);        
-    }
+  const handleTitleChange = () => {
+    setTempTitle(title);
+    setModalVisible(true);
+  };
 
-    return(
-        <SafeAreaView style={styles.Board}>
-          <TouchableOpacity onPress={ handleTitleChange}>
-            <Text style={{ fontSize: 20, textAlign: 'center', marginVertical: 20, minWidth: '50%', backgroundColor: 'gray' }}>{title}</Text>
-          </TouchableOpacity>
-          <Modal
-            animationType="fade"
-            transparent
-            visible={modalVisible}
-            onRequestClose={() => setModalVisible(false)}
-            >
-                <View style={styles.Modal}>
-                   <View style={ styles.ModalContent}>
-                     <TextInput
-                        style={{ height: 40, borderColor: 'gray', borderWidth: 1, margin: 20, paddingHorizontal: 10, backgroundColor: 'gray' }}
-                        placeholder="Enter new title"
-                        value={newTitle}
-                        onChangeText={setNewTitle}  
-                      />
-                      <View style = { styles.Buttons}>
-                        <Button title="Cancel" onPress={() => setModalVisible(false)} />
-                        <Button title="Add" onPress={handleConfirm} />
-                      </View>
-                   </View>
-                </View>
-            </Modal>
-            <SquaresBingoBoard />
-        </SafeAreaView>
-    )
+  const handleConfirm = () => {
+    setTitle(tempTitle || "Add New Goals");
+    setModalVisible(false);
+  };
+
+  return (
+    <View style={styles.container}>
+      {/* Clickable Title */}
+      <TouchableOpacity
+        onPress={handleTitleChange}
+        style={styles.titleContainer}
+        activeOpacity={0.7}
+      >
+        <Text style={styles.titleText}>{title}</Text>
+      </TouchableOpacity>
+
+      {/* Modal for editing title */}
+      <Modal visible={modalVisible} animationType="slide" transparent>
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalHeading}>Edit Title</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Enter new title"
+              value={tempTitle}
+              onChangeText={setTempTitle}
+            />
+            <View style={styles.buttonRow}>
+              <View style={styles.button}>
+                <Button title="Cancel" onPress={() => setModalVisible(false)} />
+              </View>
+              <View style={styles.button}>
+                <Button title="Confirm" onPress={handleConfirm} color="#4A90E2" />
+              </View>
+            </View>
+          </View>
+        </View>
+      </Modal>
+      <SquaresBingoBoard />
+    </View>
+  );
 }
 
-const styles =StyleSheet.create({
-    Board: {
-        flex: 1,
-        alignItems: 'center',
-        backgroundColor: '#f0f0f0',
-    },
-    Modal: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',        
-    },
-    ModalContent: {
-        width: '80%',
-        backgroundColor: 'white',
-        borderRadius: 10,
-        padding: 20,
-        alignItems: 'center',
-    },
-    Buttons: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        width: '70%',
-        marginTop: 20,
-    },
-})
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F8F9FA",
+  },
+  titleContainer: {
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    elevation: 3, // Android shadow
+    shadowColor: "#000", // iOS shadow
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    alignItems: "center",
+    justifyContent: "center",
+    marginVertical: 20,
+    minWidth: "60%",
+  },
+  titleText: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "black",
+    textAlign: "center",
+  },
+  modalOverlay: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.4)",
+  },
+  modalContent: {
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 10,
+    width: "80%",
+    elevation: 5,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+  },
+  modalHeading: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 15,
+    textAlign: "center",
+    color: "#333",
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 8,
+    padding: Platform.OS === "ios" ? 12 : 8,
+    marginBottom: 15,
+    fontSize: 16,
+  },
+  buttonRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  button: {
+    flex: 1,
+    marginHorizontal: 5,
+  },
+});
