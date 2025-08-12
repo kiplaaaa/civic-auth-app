@@ -28,7 +28,7 @@ export default function SquaresBingoBoard() {
 
   const handleCompleted = ( i: number) =>{
     setCompleted(
-        (prev)=> prev.map((done, index)=>( index === index ? !done : done))
+        (prev)=> prev.map((done, index)=>( index === i ? !done : done))
     )
   }
 
