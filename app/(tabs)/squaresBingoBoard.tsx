@@ -42,7 +42,7 @@ export default function SquaresBingoBoard() {
 
       {/* Modal */}
       <Modal
-        animationType="slide"
+        animationType="fade"
         transparent
         visible={modalVisible}
         onRequestClose={() => setModalVisible(false)}
