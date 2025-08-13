@@ -42,7 +42,7 @@ export default function SquaresBingoBoard() {
                       goal={goal}
                       onPress={() => handleTitleChange(index)}
                     />
-                    {
+                    {/* {
                         completed[index] ? (
                             <TouchableOpacity
                               style={{ bottom: 10, right: 10, position: 'absolute' }}
@@ -56,7 +56,13 @@ export default function SquaresBingoBoard() {
                                 <Ionicons name="heart-outline" size={24} color="red" />
                               </TouchableOpacity>
                         )
-                    }
+                    } */}
+                    <TouchableOpacity
+                      style={{ bottom: 10, right: 10, position: 'absolute' }}
+                      onPress={() => handleCompleted(index)}>
+                      <Ionicons name={completed[index] ? "heart" : "heart-outline"} size={24} color="red" />
+                    </TouchableOpacity>
+
                 </View>
             ))
           }       
