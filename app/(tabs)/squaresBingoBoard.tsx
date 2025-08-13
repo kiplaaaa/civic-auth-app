@@ -53,7 +53,7 @@ export default function SquaresBingoBoard() {
                             <TouchableOpacity
                               style={{ bottom: 10, right: 10, position: 'absolute' }}
                               onPress={() => handleCompleted(index)}>
-                                <Ionicons name="heart-outline" size={24} color="black" />
+                                <Ionicons name="heart-outline" size={24} color="red" />
                               </TouchableOpacity>
                         )
                     }
