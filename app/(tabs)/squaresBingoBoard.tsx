@@ -10,7 +10,7 @@ export default function SquaresBingoBoard() {
   const [modalVisible, setModalVisible] = React.useState(false);
   const [selectedIndex, setSelectedIndex] = React.useState<number | null>(null);
   const [newTitle, setNewTitle] = React.useState("");
-  const [ completed, setCompleted ] = React.useState(Array(25).fill(false));
+  const [ completed, setCompleted ] = React.useState<boolean[]>(Array(25).fill(false));
 
   const handleTitleChange = (index: number) => {
     setSelectedIndex(index);
@@ -34,12 +34,33 @@ export default function SquaresBingoBoard() {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        {titles.map((goal, index) => (
-          <SquareGoals key={index} goal={goal} onPress={() => handleTitleChange(index)} />
-        ))}       
-      </View>
-
+        <View style={styles.container}>
+          {
+            titles.map((goal, index) => (
+                <View key={index}>
+                    <SquareGoals
+                      goal={goal}
+                      onPress={() => handleTitleChange(index)}
+                    />
+                    {
+                        completed[index] ? (
+                            <TouchableOpacity
+                              style={{ bottom: 10, right: 10, position: 'absolute' }}
+                              onPress={() => handleCompleted(index)}>
+                                <Ionicons name="heart" size={24} color="red" />
+                              </TouchableOpacity>
+                        ) : (
+                            <TouchableOpacity
+                              style={{ bottom: 10, right: 10, position: 'absolute' }}
+                              onPress={() => handleCompleted(index)}>
+                                <Ionicons name="heart-outline" size={24} color="black" />
+                              </TouchableOpacity>
+                        )
+                    }
+                </View>
+            ))
+          }       
+        </View>
       {/* Modal */}
       <Modal
         animationType="fade"

@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "civic-auth-app",
+    "name": "Goalles",
     "slug": "civic-auth-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/splash-icon.png",
     "scheme": "civicauthapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,

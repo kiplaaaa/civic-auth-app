@@ -4,7 +4,7 @@ import { router, Link } from "expo-router";
 export default function Modal() {
 
     const isIn = router.canGoBack();
-    const [ isDarkMode, setIsDarkMode ] = useState(false);
+    const [ isDarkMode, setIsDarkMode ] = useState(true);
     return(
         <>
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'plum',  }}>
@@ -14,7 +14,7 @@ export default function Modal() {
                 </Text>
             </View>
 
-            <View>
+            <View style={{ backgroundColor: ' white' }}>
                 <Text style = {{ flex: 1, alignItems: 'center', justifyContent: 'center', color: 'aliceblue'}}>
                    Dark Mode
                 </Text>

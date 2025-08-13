@@ -10,6 +10,9 @@ import {
   Platform,
 } from "react-native";
 import SquaresBingoBoard from "./squaresBingoBoard";
+//import * as Splashscreen from "expo-splash-screen";
+
+//Splashscreen.preventAutoHideAsync();
 
 export default function App() {
   const [title, setTitle] = useState("Add New Goal");
